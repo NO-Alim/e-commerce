@@ -1,18 +1,18 @@
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import tv from '../../assets/tv.png';
-const ImageContainer = () => {
+const ImageContainer = ({ product }) => {
+  const { name, productImage, hoverImage } = product || {};
   return (
     <Carousel showArrows={false} showIndicators={false} showStatus={false}>
       <div>
-        <img src={tv} alt="tv" />
+        <img src={productImage} alt={name} />
       </div>
       <div>
-        <img src={tv} alt="tv" />
+        <img src={hoverImage} alt={name} />
       </div>
       <div>
-        <img src={tv} alt="tv" />
+        <img src={productImage} alt={name} />
       </div>
     </Carousel>
   );

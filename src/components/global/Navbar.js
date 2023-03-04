@@ -2,6 +2,7 @@ import { Drawer } from 'antd';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import cart from '../../assets/cart.png';
+import logo from '../../assets/logo.png';
 import menu from '../../assets/menu.png';
 import CartContainer from './CartContainer';
 
@@ -44,7 +45,7 @@ const Navbar = () => {
         </div>
         <div>
           <Link to="/">
-            <h1 className="text-2xl font-semibold">E-valy</h1>
+            <img src={logo} alt="apper" />
           </Link>
         </div>
         <div className="gap-5 hidden sm:flex">
@@ -90,7 +91,7 @@ const Navbar = () => {
         <div className="flex flex-col gap-5">
           <div>
             <Link to="/">
-              <h1 className="text-2xl font-semibold">E-valy</h1>
+              <img src={logo} alt="apper" />
             </Link>
           </div>
           <div className=" flex flex-col gap-3">

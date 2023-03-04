@@ -8,7 +8,7 @@ import tv from '../../assets/tv.png';
 const Showcase = () => {
   //change carousel event
   const onChange = (currentSlide) => {
-    console.log(currentSlide);
+    //console.log(currentSlide);
   };
 
   //used for next prev button in second carousel

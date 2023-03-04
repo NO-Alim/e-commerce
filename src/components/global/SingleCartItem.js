@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AiTwotoneDelete } from 'react-icons/ai';
 import tv from '../../assets/tv.png';
 const SingleCartItem = () => {
+  const [counter, setCounter] = useState(1);
   return (
     <div className="flex gap-3 bg-slate-900/5 p-2 rounded-md">
       <div>
@@ -14,13 +15,14 @@ const SingleCartItem = () => {
           <input
             type="number"
             className="flex-1 w-full focus:outline-none text-center"
-            value="1"
+            value={counter}
+            onChange={(e) => setCounter(e.target.value)}
           />
           <span className="text-xl flex-1 text-center">-</span>
         </div>
         <h1 className="text-lg font-semibold">$233.99</h1>
         <div>
-          <i className="text-xl">
+          <i className="text-xl cursor-pointer">
             <AiTwotoneDelete />
           </i>
         </div>

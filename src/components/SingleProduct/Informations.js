@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   FaFacebook,
   FaInstagram,
@@ -6,13 +6,27 @@ import {
   FaStar,
   FaYoutube,
 } from 'react-icons/fa';
+import { precisionRound } from '../utils/PricisionRound';
 
-const Informations = () => {
+const Informations = ({ product }) => {
+  const {
+    name,
+    price,
+    productImage,
+    hoverImage,
+    description,
+    offerPercentage,
+    productType,
+    onSale,
+    id,
+  } = product || {};
+
+  const [count, setCount] = useState(1);
   return (
     <div>
       <div className="flex flex-col gap-3">
         <div>
-          <h1 className="text-2xl">Product Name</h1>
+          <h1 className="text-2xl">{name}</h1>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex">
@@ -32,14 +46,35 @@ const Informations = () => {
           <span>(2 Reviews)</span>
         </div>
         <div>
-          <h1 className="text-2xl">$89.99</h1>
+          <div>
+            <div className="flex gap-3 items-center">
+              <h1
+                className={`text-2xl  ${
+                  offerPercentage
+                    ? 'line-through text-gray-500'
+                    : 'text-slate-900'
+                }`}
+              >
+                ${price}
+              </h1>
+              {offerPercentage && (
+                <span className=" text-gray-500">- {offerPercentage}%</span>
+              )}
+            </div>
+            {offerPercentage && (
+              <h1 className="text-2xl font-semibold text-slate-900">
+                $
+                {precisionRound(
+                  Number(price) -
+                    (Number(price) * Number(offerPercentage)) / 100,
+                  2
+                )}
+              </h1>
+            )}
+          </div>
         </div>
         <div>
-          <p className=" text-gray-600 text-lg">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis quod
-            ab sequi debitis unde quas eum voluptatem. Placeat, tempora
-            blanditiis!
-          </p>
+          <p className=" text-gray-600 text-lg">hello world</p>
         </div>
         <div className="flex gap-3">
           <h4 className="text-lg text-gray-600">Qty:</h4>
@@ -50,6 +85,8 @@ const Informations = () => {
             <input
               type="number"
               className="flex-1 w-full focus:outline-none text-center"
+              value={count}
+              onChange={(e) => setCount(e.target.value)}
             />
             <button className="flex-1 text-xl focus:outline-none text-end">
               -

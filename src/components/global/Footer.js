@@ -1,5 +1,6 @@
 import React from 'react';
 import googlePlay from '../../assets/google-play.jpg';
+import logo from '../../assets/logo-white.png';
 import Layout from './Layout';
 
 const Footer = () => {
@@ -9,7 +10,7 @@ const Footer = () => {
         <div className="flex flex-col gap-10 md:gap-0 md:flex-row items-start md:items-center">
           <div className="flex-1 flex flex-col sm:flex-row gap-10">
             <div className="flex flex-col gap-5">
-              <h1 className="text-3xl font-bold">E-valy</h1>
+              <img src={logo} alt="apper" className="w-20" />
               <p>
                 Largest product search engine, maximum categorized online
                 shopping mall and quickest home delivery system.
@@ -22,7 +23,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex-1 flex gap-5 flex-col items-center">
-            <h1 className="text-xl font-semibold">Get E-valy App</h1>
+            <h1 className="text-xl font-semibold">Get apper App</h1>
             <img
               src={googlePlay}
               alt="google play"
