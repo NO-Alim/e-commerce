@@ -4,10 +4,10 @@ import Layout from '../components/global/Layout';
 import DescriptionAndReview from '../components/SingleProduct/DescriptionAndReview';
 import ImageContainer from '../components/SingleProduct/ImageContainer';
 import Informations from '../components/SingleProduct/Informations';
+import MayLike from '../components/SingleProduct/MayLike';
 import Error from '../components/ui/Error';
 import Loading from '../components/ui/Loading';
 import { useGetProductQuery } from '../features/products/productApi';
-// import MayLike from '../components/SingleProduct/MayLike';
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -47,7 +47,9 @@ const SingleProduct = () => {
           <div>
             <DescriptionAndReview />
           </div>
-          <div>{/* <MayLike /> */}</div>
+          <div>
+            <MayLike productType={product?.productType} />
+          </div>
         </div>
       </Layout>
     );

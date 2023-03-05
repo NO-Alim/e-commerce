@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import {
   FaFacebook,
   FaInstagram,
+  FaMinus,
   FaPinterest,
+  FaPlus,
   FaStar,
   FaYoutube,
 } from 'react-icons/fa';
@@ -16,9 +18,9 @@ const Informations = ({ product }) => {
     hoverImage,
     description,
     offerPercentage,
-    productType,
     onSale,
     id,
+    productType,
   } = product || {};
 
   const [count, setCount] = useState(1);
@@ -74,13 +76,30 @@ const Informations = ({ product }) => {
           </div>
         </div>
         <div>
-          <p className=" text-gray-600 text-lg">hello world</p>
+          <ul className="list-disc ml-5">
+            <li>Lorem ipsum dolor sit amet.</li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit,
+              voluptatibus.
+            </li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
+            <li>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque
+              vero enim est?
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat ab
+              dolore vel fuga eum reiciendis vero sit qui molestias modi.
+            </li>
+          </ul>
         </div>
         <div className="flex gap-3">
           <h4 className="text-lg text-gray-600">Qty:</h4>
           <div className="border border-gray-300 flex  items-center justify-between px-3 w-32">
             <button className="flex-1 text-xl focus:outline-none text-start">
-              +
+              <i className="text-sm">
+                <FaPlus />
+              </i>
             </button>
             <input
               type="number"
@@ -88,8 +107,10 @@ const Informations = ({ product }) => {
               value={count}
               onChange={(e) => setCount(e.target.value)}
             />
-            <button className="flex-1 text-xl focus:outline-none text-end">
-              -
+            <button className="flex-1 text-xl focus:outline-none flex justify-end">
+              <i className="text-sm">
+                <FaMinus />
+              </i>
             </button>
           </div>
         </div>
@@ -100,7 +121,7 @@ const Informations = ({ product }) => {
         </div>
         <div className="text-lg flex gap-3">
           <h4>Category:</h4>
-          <h4 className="text-gray-600">Women, Accessories, Shoes</h4>
+          <h4 className="text-gray-600">{productType}</h4>
         </div>
         <div className="flex gap-3 items-center">
           <h4 className="text-lg">Share:</h4>

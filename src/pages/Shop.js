@@ -1,17 +1,25 @@
 import { Modal } from 'antd';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import filter from '.././assets/filter.png';
 import Layout from '../components/global/Layout';
 import Filter from '../components/Shop/Filter';
 import ProductsList from '../components/Shop/ProductsList';
 import Error from '../components/ui/Error';
 import Loading from '../components/ui/Loading';
-import { useGetProductsQuery } from '../features/products/productApi';
+import { useGetMoreProductsQuery } from '../features/products/productApi';
 const Shop = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { page } = useSelector((state) => state.pagination);
+  const { category, gender, minPrice, maxPrice, brand, onSale, offer } =
+    useSelector((state) => state.filter);
 
   //fetch data
-  const { isError, isLoading, data } = useGetProductsQuery();
+  const { isError, isLoading, data } = useGetMoreProductsQuery({
+    page: page,
+    name: '',
+    onSale: onSale,
+  });
   //useGetProduct return { data,totalCount}. here destructure data
   const { data: products, totalCount } = data || {};
 
@@ -63,7 +71,7 @@ const Shop = () => {
               <Filter />
             </div>
             <div className="flex-1">
-              <ProductsList products={products} />
+              <ProductsList products={products} totalCount={totalCount} />
             </div>
             <div className=" fixed  left-0 w-full bottom-5 flex justify-center md:hidden">
               <button

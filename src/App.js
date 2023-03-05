@@ -4,12 +4,14 @@ import './App.css';
 import Footer from './components/global/Footer';
 import Navbar from './components/global/Navbar';
 import PopupMessage from './components/global/PopupMessage';
+import ScrollToTop from './components/utils/ScrollToTop';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import SingleProduct from './pages/SingleProduct';
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <PopupMessage />
       <Routes>
