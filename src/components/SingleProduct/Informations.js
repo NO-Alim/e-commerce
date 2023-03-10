@@ -8,6 +8,9 @@ import {
   FaStar,
   FaYoutube,
 } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { reload } from '../../features/localStorage/localStorage';
+import addToCart from '../utils/addToCart';
 import { precisionRound } from '../utils/PricisionRound';
 
 const Informations = ({ product }) => {
@@ -24,6 +27,13 @@ const Informations = ({ product }) => {
   } = product || {};
 
   const [count, setCount] = useState(1);
+  const dispatch = useDispatch();
+
+  const handleDecrease = () => {
+    if (count > 1) {
+      setCount(count - 1);
+    }
+  };
   return (
     <div>
       <div className="flex flex-col gap-3">
@@ -96,26 +106,38 @@ const Informations = ({ product }) => {
         <div className="flex gap-3">
           <h4 className="text-lg text-gray-600">Qty:</h4>
           <div className="border border-gray-300 flex  items-center justify-between px-3 w-32">
-            <button className="flex-1 text-xl focus:outline-none text-start">
+            <button
+              className="flex-1 text-xl focus:outline-none "
+              onClick={handleDecrease}
+            >
               <i className="text-sm">
-                <FaPlus />
+                <FaMinus />
               </i>
             </button>
+
             <input
               type="number"
               className="flex-1 w-full focus:outline-none text-center"
               value={count}
               onChange={(e) => setCount(e.target.value)}
             />
-            <button className="flex-1 text-xl focus:outline-none flex justify-end">
+            <button
+              className="flex-1 text-xl focus:outline-none text-start flex justify-end"
+              onClick={() => setCount(count + 1)}
+            >
               <i className="text-sm">
-                <FaMinus />
+                <FaPlus />
               </i>
             </button>
           </div>
         </div>
         <div>
-          <button className=" bg-slate-900/5 text-slate-900 font-semibold border border-slate-900 all hover:bg-slate-900 hover:text-white px-4 py-2 rounded-md text-base">
+          <button
+            className=" bg-slate-900/5 text-slate-900 font-semibold border border-slate-900 all hover:bg-slate-900 hover:text-white px-4 py-2 rounded-md text-base"
+            onClick={() => (
+              addToCart({ ...product, quantity: count }), dispatch(reload())
+            )}
+          >
             ADD TO CART
           </button>
         </div>

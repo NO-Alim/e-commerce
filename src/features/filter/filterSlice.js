@@ -22,8 +22,8 @@ const filterSlice = createSlice({
       state.minPrice = '';
       state.maxPrice = '';
       state.brand = '';
-      state.onSale = false;
-      state.offer = false;
+      state.onSale = undefined;
+      state.offer = undefined;
     },
     setName: (state, action) => {
       state.name = action.payload;

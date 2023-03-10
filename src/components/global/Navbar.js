@@ -1,5 +1,6 @@
 import { Drawer } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import cart from '../../assets/cart.png';
 import logo from '../../assets/logo.png';
@@ -20,6 +21,12 @@ const Navbar = () => {
   const [openCart, setOpenCart] = useState(false);
   const [placeCartMenu, setPlaceCartMenu] = useState('right');
 
+  //cartCounter
+  const { reloader } = useSelector((state) => state.localStorage);
+  const [cartList, setCartList] = useState(
+    JSON.parse(localStorage.getItem('cartList'))
+  );
+
   //for menu
   const showMenuDrawer = () => {
     setOpenMenu(true);
@@ -36,6 +43,12 @@ const Navbar = () => {
   const onCartClose = () => {
     setOpenCart(false);
   };
+
+  //reload
+  useEffect(() => {
+    const list = JSON.parse(localStorage.getItem('cartList'));
+    setCartList(list);
+  }, [reloader]);
 
   return (
     <nav className="px-5 sm:px-14 py-3 border-b border-slate-100 flex justify-between items-center gap-5">
@@ -76,7 +89,7 @@ const Navbar = () => {
         <div className="relative mr-4" onClick={showCartDrawer}>
           <img src={cart} alt="cart" className="w-6 cursor-pointer" />
           <div className=" absolute w-5 h-5 rounded-md bg-slate-900 -top-3 -right-3 text-white flex items-center justify-center text-sm">
-            12
+            {cartList ? cartList?.length : 0}
           </div>
         </div>
       </div>

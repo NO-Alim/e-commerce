@@ -1,23 +1,18 @@
 import { Rate } from 'antd';
 import React from 'react';
 import { FaCartPlus, FaSearch } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { reload } from '../../features/localStorage/localStorage';
+import addToCart from '../utils/addToCart';
 import { precisionRound } from '../utils/PricisionRound';
 
 const ProductCart = ({ width, product }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   //product destructure
-  const {
-    name,
-    price,
-    productImage,
-    hoverImage,
-    description,
-    offerPercentage,
-    productType,
-    onSale,
-    id,
-  } = product || {};
+  const { name, price, productImage, offerPercentage, onSale, id } =
+    product || {};
 
   return (
     <div
@@ -35,7 +30,12 @@ const ProductCart = ({ width, product }) => {
         </div>
         <div className="absolute w-full h-12 bottom-0 sm:-bottom-12 group-hover:bottom-0 left-0 all">
           <div className=" w-32 mx-auto bg-slate-900 h-full rounded-md flex justify-center items-center border z-10">
-            <button className="flex-1 flex items-center justify-center text-white hover:text-[yellow] all h-full">
+            <button
+              className="flex-1 flex items-center justify-center text-white hover:text-[yellow] all h-full"
+              onClick={() => (
+                addToCart({ ...product, quantity: 1 }), dispatch(reload())
+              )}
+            >
               <i>
                 <FaCartPlus />
               </i>
@@ -75,7 +75,7 @@ const ProductCart = ({ width, product }) => {
               {precisionRound(
                 Number(price) - (Number(price) * Number(offerPercentage)) / 100,
                 2
-              )}
+              ).toFixed(2)}
             </h1>
           )}
         </div>

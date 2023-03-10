@@ -13,8 +13,9 @@ export const productApi = apiSlice.injectEndpoints({
       },
     }),
     getMoreProducts: builder.query({
+      //Two example of json server query
       //http://localhost:9000/products?name_like=women&productType_like=bag&_page=1&_limit=2
-      //`/messages?conversationId=${id}&_sort=timestamp&_order=desc&_page=${page}&_limit=${process.env.REACT_APP_MESSAGES_PER_PAGE}`,
+      //`/url?route=${id}&_sort=timestamp&_order=desc&_page=${page}&_limit=${}`,
       query: ({
         page = 1,
         name = '',
@@ -22,7 +23,10 @@ export const productApi = apiSlice.injectEndpoints({
         onSale = undefined,
         offer = undefined,
       }) =>
-        `/products?name_like=${name}&productType_like=${category}${
+        `/products?name_like=${name}${
+          //if category exist and isn't equal to all
+          category !== 'all' ? `&productType_like=${category}` : ''
+        }${
           //if onSale have boolean value
           onSale === undefined ? '' : `&onSale=${onSale}`
         }&_page=${page}&_limit=8`,
