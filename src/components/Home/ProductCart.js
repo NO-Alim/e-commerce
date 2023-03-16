@@ -1,9 +1,13 @@
 import { Rate } from 'antd';
 import React from 'react';
-import { FaCartPlus, FaSearch } from 'react-icons/fa';
+import { FaCartPlus } from 'react-icons/fa';
+import { FiEye } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { reload } from '../../features/localStorage/localStorage';
+import {
+  productAddSuccess,
+  reload,
+} from '../../features/localStorage/localStorage';
 import addToCart from '../utils/addToCart';
 import { precisionRound } from '../utils/PricisionRound';
 
@@ -33,7 +37,8 @@ const ProductCart = ({ width, product }) => {
             <button
               className="flex-1 flex items-center justify-center text-white hover:text-[yellow] all h-full"
               onClick={() => (
-                addToCart({ ...product, quantity: 1 }), dispatch(reload())
+                addToCart({ ...product, quantity: 1 }),
+                dispatch(reload(), dispatch(productAddSuccess(true)))
               )}
             >
               <i>
@@ -41,9 +46,12 @@ const ProductCart = ({ width, product }) => {
               </i>
             </button>
             <span className=" h-5 border-l"></span>
-            <button className="flex-1 flex items-center justify-center text-white hover:text-[yellow] all h-full">
+            <button
+              className="flex-1 flex items-center justify-center text-white hover:text-[yellow] all h-full"
+              onClick={() => navigate(`/product/${id}`)}
+            >
               <i>
-                <FaSearch />
+                <FiEye />
               </i>
             </button>
           </div>

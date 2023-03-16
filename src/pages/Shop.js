@@ -40,7 +40,7 @@ const Shop = () => {
 
   if (isLoading) {
     content = (
-      <div className=" min-h-[70vh] flex items-center justify-center">
+      <div className="flex-1 mt-32 flex items-center">
         <Loading />
       </div>
     );
@@ -48,7 +48,7 @@ const Shop = () => {
 
   if (!isLoading && isError) {
     content = (
-      <div className=" min-h-[70vh] flex items-center justify-center">
+      <div className="flex-1 mt-32">
         <Error />
       </div>
     );
@@ -56,7 +56,7 @@ const Shop = () => {
 
   if (!isLoading && !isError && products?.length === 0) {
     content = (
-      <div className=" min-h-[70vh] flex items-center justify-center">
+      <div className="flex-1 mt-32">
         <Error message="There is no Product Found." />
       </div>
     );

@@ -2,11 +2,11 @@ import React from 'react';
 import { AiTwotoneDelete } from 'react-icons/ai';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { reload } from '../../features/localStorage/localStorage';
 import decreaseCartItem from '../utils/decreaseCartItem';
 import deleteCartItem from '../utils/deleteCartItem';
 import increaseCartItem from '../utils/increaseCartItem';
-import { useNavigate } from 'react-router-dom';
 import { precisionRound } from '../utils/PricisionRound';
 const SingleCartItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -38,11 +38,7 @@ const SingleCartItem = ({ product }) => {
               <FaMinus />
             </i>
           </span>
-          <input
-            type="number"
-            className="flex-1 w-full focus:outline-none text-center"
-            value={quantity}
-          />
+          <span>{quantity}</span>
           <span
             className="flex-1 text-center cursor-pointer text-sm flex justify-end"
             onClick={() => (increaseCartItem(id, 1), dispatch(reload()))}

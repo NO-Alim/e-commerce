@@ -1,7 +1,7 @@
 import { Drawer } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import cart from '../../assets/cart.png';
 import logo from '../../assets/logo.png';
 import menu from '../../assets/menu.png';
@@ -26,6 +26,11 @@ const Navbar = () => {
   const [cartList, setCartList] = useState(
     JSON.parse(localStorage.getItem('cartList'))
   );
+  //search input
+  const [searchStr, setSearchStr] = useState('');
+
+  //
+  const navigate = useNavigate();
 
   //for menu
   const showMenuDrawer = () => {
@@ -42,6 +47,14 @@ const Navbar = () => {
 
   const onCartClose = () => {
     setOpenCart(false);
+  };
+
+  //search handler
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/search/${searchStr}`);
+    setSearchStr('');
   };
 
   //reload
@@ -76,11 +89,16 @@ const Navbar = () => {
         </div>
       </div>
       <div className="gap-10 flex items-center flex-1 justify-end">
-        <form className=" hidden lg:flex bg-slate-300 rounded-md overflow-hidden items-center justify-end ">
+        <form
+          className=" hidden lg:flex bg-slate-300 rounded-md overflow-hidden items-center justify-end "
+          onSubmit={handleSearch}
+        >
           <input
             type="text"
             className=" bg-slate-300 p-2 focus:outline-none"
             placeholder="e.g: shirt"
+            value={searchStr}
+            onChange={(e) => setSearchStr(e.target.value)}
           />
           <button className="p-2 w-20 bg-slate-900 text-white text-lg focus:outline-none text-center">
             Search

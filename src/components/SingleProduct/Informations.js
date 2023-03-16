@@ -9,7 +9,10 @@ import {
   FaYoutube,
 } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { reload } from '../../features/localStorage/localStorage';
+import {
+  productAddSuccess,
+  reload,
+} from '../../features/localStorage/localStorage';
 import addToCart from '../utils/addToCart';
 import { precisionRound } from '../utils/PricisionRound';
 
@@ -135,7 +138,8 @@ const Informations = ({ product }) => {
           <button
             className=" bg-slate-900/5 text-slate-900 font-semibold border border-slate-900 all hover:bg-slate-900 hover:text-white px-4 py-2 rounded-md text-base"
             onClick={() => (
-              addToCart({ ...product, quantity: count }), dispatch(reload())
+              addToCart({ ...product, quantity: count }),
+              dispatch(reload(), dispatch(productAddSuccess(true)))
             )}
           >
             ADD TO CART

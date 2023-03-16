@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { totalPriceCalculate } from '../utils/toatalPirceCalculate';
 import SingleCartItem from './SingleCartItem';
 
 const CartContainer = () => {
   const { reloader } = useSelector((state) => state.localStorage);
+  //navigator
+  const navigate = useNavigate();
   const [cartList, setCartList] = useState(
     JSON.parse(localStorage.getItem('cartList'))
   );
@@ -39,17 +42,16 @@ const CartContainer = () => {
               : 0}
           </h1>
         </div>
-        <div className="flex items-center justify-between text-xl">
-          <h1>Shipping:</h1>
-          <h1>$50</h1>
-        </div>
         <hr className="my-3" />
         <div className="flex items-center justify-between text-xl">
           <h1>Total</h1>
-          <h1>${totalPriceCalculate(cartList) + 50}</h1>
+          <h1>${totalPriceCalculate(cartList)}</h1>
         </div>
         <div className=" text-center mt-5">
-          <button className="px-4 py-2 bg-slate-900/10 text-slate-900 border border-slate-900 font-semibold all hover:bg-slate-900 hover:text-white rounded-md text-lg">
+          <button
+            className="px-4 py-2 bg-slate-900/10 text-slate-900 border border-slate-900 font-semibold all hover:bg-slate-900 hover:text-white rounded-md text-lg"
+            onClick={() => navigate('/checkout')}
+          >
             Proceed To Checkout
           </button>
         </div>
