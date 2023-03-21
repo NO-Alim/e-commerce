@@ -4,11 +4,7 @@ import { FaCartPlus } from 'react-icons/fa';
 import { FiEye } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {
-  productAddSuccess,
-  reload,
-} from '../../features/localStorage/localStorage';
-import addToCart from '../utils/addToCart';
+import useCartHandler from '../../hooks/useCartHandler';
 import { precisionRound } from '../utils/PricisionRound';
 
 const ProductCart = ({ width, product }) => {
@@ -17,6 +13,8 @@ const ProductCart = ({ width, product }) => {
   //product destructure
   const { name, price, productImage, offerPercentage, onSale, id } =
     product || {};
+
+  const [addToCart] = useCartHandler();
 
   return (
     <div
@@ -36,10 +34,7 @@ const ProductCart = ({ width, product }) => {
           <div className=" w-32 mx-auto bg-slate-900 h-full rounded-md flex justify-center items-center border z-10">
             <button
               className="flex-1 flex items-center justify-center text-white hover:text-[yellow] all h-full"
-              onClick={() => (
-                addToCart({ ...product, quantity: 1 }),
-                dispatch(reload(), dispatch(productAddSuccess(true)))
-              )}
+              onClick={() => addToCart({ ...product, quantity: 1 })}
             >
               <i>
                 <FaCartPlus />

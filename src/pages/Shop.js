@@ -11,7 +11,7 @@ import { useGetMoreProductsQuery } from '../features/products/productApi';
 const Shop = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { page } = useSelector((state) => state.pagination);
-  const { category, onSale } = useSelector((state) => state.filter);
+  const { category, onSale, gender } = useSelector((state) => state.filter);
 
   //fetch data
   const { isError, isLoading, data } = useGetMoreProductsQuery({
@@ -19,6 +19,7 @@ const Shop = () => {
     name: '',
     onSale: onSale,
     category: category,
+    gender: gender,
   });
   //useGetProduct return { data,totalCount}. here destructure data
   const { data: products, totalCount } = data || {};

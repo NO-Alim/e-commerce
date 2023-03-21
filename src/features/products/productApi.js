@@ -20,12 +20,16 @@ export const productApi = apiSlice.injectEndpoints({
         page = 1,
         name = '',
         category = '',
+        gender = '',
         onSale = undefined,
         offer = undefined,
       }) =>
         `/products?name_like=${name}${
           //if category exist and isn't equal to all
           category !== 'all' ? `&productType_like=${category}` : ''
+        }${
+          //if gender exist and isn't equal to all
+          gender !== '' ? `&genderType=${gender}` : ''
         }${
           //if onSale have boolean value
           onSale === undefined ? '' : `&onSale=${onSale}`

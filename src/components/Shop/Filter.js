@@ -60,7 +60,7 @@ const Filter = () => {
   };
 
   //must be change later & come form server
-  const categoryList = ['all', 'cloth', 'bag', 'shoe', 'accessories'];
+  const categoryList = ['all', 'cloth', 'bag', 'accessories'];
   const genderList = ['women', 'men', 'baby'];
 
   return (

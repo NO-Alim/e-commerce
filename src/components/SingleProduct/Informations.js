@@ -9,11 +9,7 @@ import {
   FaYoutube,
 } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import {
-  productAddSuccess,
-  reload,
-} from '../../features/localStorage/localStorage';
-import addToCart from '../utils/addToCart';
+import useCartHandler from '../../hooks/useCartHandler';
 import { precisionRound } from '../utils/PricisionRound';
 
 const Informations = ({ product }) => {
@@ -31,6 +27,9 @@ const Informations = ({ product }) => {
 
   const [count, setCount] = useState(1);
   const dispatch = useDispatch();
+
+  const [addToCart, deleteCartItem, decreaseCartItem, increaseCartItem] =
+    useCartHandler();
 
   const handleDecrease = () => {
     if (count > 1) {
@@ -137,10 +136,7 @@ const Informations = ({ product }) => {
         <div>
           <button
             className=" bg-slate-900/5 text-slate-900 font-semibold border border-slate-900 all hover:bg-slate-900 hover:text-white px-4 py-2 rounded-md text-base"
-            onClick={() => (
-              addToCart({ ...product, quantity: count }),
-              dispatch(reload(), dispatch(productAddSuccess(true)))
-            )}
+            onClick={() => addToCart({ ...product, quantity: count })}
           >
             ADD TO CART
           </button>
