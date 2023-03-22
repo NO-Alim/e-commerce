@@ -41,7 +41,7 @@ const Shop = () => {
 
   if (isLoading) {
     content = (
-      <div className="flex-1 mt-32 flex items-center">
+      <div className="flex-1 flex items-center justify-center">
         <Loading />
       </div>
     );

@@ -1,3 +1,13 @@
-## Available Scripts
+# e-commerce app.
 
-This Repo is still uncomplete.(work goes on.)
+### [Live Site](https://stellular-buttercream-55d47f.netlify.app/)
+
+![e-commerce app]()
+
+## Introduction
+
+This is a e-commerce site with all type of cart features.
+
+## Tools
+
+React js, Redux, Tailwind
